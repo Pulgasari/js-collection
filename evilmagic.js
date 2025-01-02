@@ -1,22 +1,25 @@
 (function(){ "use strict";
 
-  this.evilmagic = ( url, selector ) => {
+  this.evilmagic = ( url, selectors ) => {
   
     url = url || document.URL;
-    selector = selector || 'html';
+    selectors = selectors || 'html';
+    selectors = Array.isArray(selector) ? selectors : [ selectors ];
   
     fetch(url)
     .then( response => { // The API call was successful!
       return response.text();
     })
     .then( html => { // This is the HTML from our response as a text string
-  
-      let dom        = new DOMParser().parseFromString( html, 'text/html' );
-      let newElement = dom.querySelector(selector);
-      let oldElement = document.querySelector(selector);
-  
-      // Apply
-       oldElement.replaceWith( newElement );
+      
+      let dom = new DOMParser().parseFromString( html, 'text/html' );
+      
+      selectors.forEach( selector => {
+        let newElement = dom.querySelector(selector);
+        let oldElement = document.querySelector(selector);
+        // Apply
+        oldElement.replaceWith( newElement );
+      });
   
     })
     .catch( err => { // There was an error
