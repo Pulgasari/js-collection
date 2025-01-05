@@ -4,7 +4,7 @@
   
     url = url || document.URL;
     selectors = selectors || 'html';
-    selectors = Array.isArray(selector) ? selectors : [ selectors ];
+    selectors = Array.isArray(selectors) ? selectors : [ selectors ];
   
     fetch(url)
     .then( response => { // The API call was successful!
