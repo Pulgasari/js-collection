@@ -80,7 +80,27 @@
       return this.el.value;
     }
   };
-
+  
+  obj.append = function( html ){
+    this.el.insertAdjacentHTML( 'beforeend', html );
+    return this;
+  }
+  obj.prepend = function( html ){
+    this.el.insertAdjacentHTML( 'afterbegin', html );
+    return this;
+  }
+  obj.before = function( html ){
+    this.el.insertAdjacentHTML( 'beforebegin', html );
+    return this;
+  }
+  obj.after = function( html ){
+    this.el.insertAdjacentHTML( 'afterend', html );
+    return this;
+  }
+  
+  obj.html    = function( html ){ this.el.innerHTML = html; return this; };
+  obj.replace = function( html ){ this.el.outerHTML = html; return this; };
+  
   // Log
   obj.log = function() { console.log(this.el); return this; };
 
