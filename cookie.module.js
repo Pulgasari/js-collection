@@ -1,0 +1,19 @@
+export default function cookie(name, value, days, domain) {
+  if (!name.startsWith('!') && !value && !days) {
+    // get cookie
+    let result = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)')
+    return result ? result[2] : null
+  } else {
+    // set values for removing cookie
+    if (name.startsWith('!')) {
+      value = ''
+      days = -1
+    }
+
+    // set cookie
+    let date = new Date()
+    date.setTime(date.getTime() + 24 * 60 * 60 * 1000 * (days || 1000))
+    let theDomain = domain ? ';domain=' + domain : ''
+    document.cookie = name + '=' + value + ';path=/;expires=' + date.toGMTString() + theDomain
+  }
+}
