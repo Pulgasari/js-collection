@@ -20,3 +20,15 @@ cookie('color');
 ```JS
 cookie('!color');
 ```
+
+#### Has Cookie
+to check if cookie exists
+```JS
+cookie('?color');
+```
+
+#### Is Cookie
+to check if cookie has specific value
+```JS
+cookie('?color', '#000000');
+```
